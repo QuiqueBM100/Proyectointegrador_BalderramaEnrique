@@ -12,7 +12,7 @@
 	<artifactId>lebb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lebb</name>
-	<description>Portfolio de lebb</description>
+	<description>Porfolio de LEBB</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
