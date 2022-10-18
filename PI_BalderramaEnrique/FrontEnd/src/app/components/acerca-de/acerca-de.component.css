@@ -6,17 +6,17 @@ div{
 	text-align: center;
 }
 /*estilo de foto de perfil*/
-@media (min-width: 576px){
+@media (min-width: 600px){
 	#fotoPerfil{
 		position: absolute;
-		width: 15%;
+		width: 20%;
 		border-radius: 100%;
 		box-shadow: 3px 3px 3px gray;
 		left: 2%;
-		top: 600px;
+		top: 450px;
 	}
 }
-@media (max-width: 575px){
+@media (max-width: 600px){
 	#fotoPerfil{
 		position: absolute;
 		width: 30%;
@@ -28,8 +28,17 @@ div{
 }	
 
 /*etiqueta nombre*/
-#nombre{
-	font-weight: bold;
-	margin-top: 25%;
+strong{
+	margin-left: 60px;
+}
+p{
+	margin-top: 2%;
+	margin-left: 45px;
+}
+
+/*etiqueta acercade*/
+span{
+	margin-top: 5%;
 	margin-left: 10px;
+
 }

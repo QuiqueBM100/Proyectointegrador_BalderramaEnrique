@@ -1,13 +1,112 @@
 <div class="row">
      <h1>Proyectos Realizados</h1>
-	 <div class="contenedor">
-		<div class="col-sm-12 col-md-7 col-lg 7 parte1">
-			<h1>Proyecto 1</h1>
-			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia, vero commodi! Culpa aliquid excepturi iste quasi reprehenderit cum voluptatibus, odio porro quisquam fugit deleniti maiores libero aperiam accusantium vitae alias?</p>
-		</div>
-		<div class="col-sm-12 col-md-3 col-lg 3 offset-md-1 offset-lg-1 parte2">
-			<img src="../../../assets/Logo Local.jpg" class="img-fuid img-proyecto">
-		</div>
+	 <div class="col-lg-2">
+		<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProyectoModal" (click)="onOpenModal('add')" *ngIf="isLogged">
+			<a class="nav-link" style="color: aliceblue">
+				Agregar Nuevo Proyecto<span class="sr-only"></span></a>
+		</button>
+	</div>
 
-	 </div>
+	<div class="col lg 1"></div>
+	<div class="col-lg-11">
+		<table class="table">
+			<tbody>
+				<tr *ngFor="let Proyecto of proyecto">
+					<td>
+						<h2>{{Proyecto.nombreP}}</h2>
+					</td>
+					<td>{{Proyecto.descripcionP}}</td>
+					<td *ngIf="isLogged">
+						<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editProyectoModal" (click)="onOpenModal('edit', Proyecto)">
+							<i class="bi bi-pencil-fill"></i>EDITAR</button>
+					</td>
+					<td *ngIf="isLogged">
+						<button class="btn btn-danger" (click)="delete(Proyecto.id)">
+							<i class="bi bi-trash-fill"></i>BORRAR</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Modal añadir Proyecto-->
+	<div class="modal fade" id="addProyectoModal" tabindex="-1" role="dialog" aria-labelledby="addProyectoModalLabel"
+		aria-hidden="true">
+
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addProyectoModalLabel"> Añadir Proyecto</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form #addForm="ngForm" (ngSubmit)="onAddProyecto(addForm)">
+						<div class="form-group">
+							<label for="nombreP" class="col-form-label">Nombre del Proyecto</label>
+							<input type="text" ngModel name="nombreP" class="form-control" id="nombreP"
+								placeholder="Nombre del Proyecto" required />
+						</div>
+						<div class="form-group">
+							<label for="descripcionP" class="col-form-label">Descripcion</label>
+							<input type="text" ngModel name="descripcionP" class="form-control"
+								id="descripcionP" placeholder="Descripcion" required />
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="add-proyecto-form" class="btn btn-secondary"
+								data-bs-dismiss="modal">
+								Cerrar
+							</button>
+							<button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">
+								Añadir Proyecto
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal editar Proyecto-->
+	<div class="modal fade" id="editProyectoModal" tabindex="-1" role="dialog" aria-labelledby="editProyectoModalLabel"
+		aria-hidden="true">
+
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="updateProyectoModalLabel"> Editar Proyecto {{editProyecto?.nombreP}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form #editForm="ngForm">
+						<div class="form-group">
+							<label for="nombreP" class="col-form-label">Nombre del Proyecto</label>
+							<input type="text" ngModel="{{editProyecto?.nombreP}}" name="nombreP" class="form-control" id="nombreP"
+								placeholder="Nombre del Proyecto" required />
+						</div>
+						<input type="hidden" ngModel="{{editProyecto?.id}}" name="id" class="form-control" id="id" placeholder="">
+						<div class="form-group">
+							<label for="descripcionP">Descripcion</label>
+							<input type="text" ngModel="{{editProyecto?.descripcionP}}" name="descripcionP" class="form-control"
+								id="descripcionP" placeholder="Descripcion" required />
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="" class="btn btn-secondary"
+								data-bs-dismiss="modal">
+								Cerrar
+							</button>
+							<button (click)="onUpdateProyecto(editForm.value)" data-bs-dismiss="modal" class="btn btn-primary">
+								Guardar cambios
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
