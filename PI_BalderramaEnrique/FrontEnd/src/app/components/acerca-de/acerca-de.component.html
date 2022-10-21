@@ -9,6 +9,7 @@
 					<strong id="nombre">{{persona.nombre}} {{persona.apellido}}</strong>
 					<p>Full Stack Developer Jr</p>
 					<br>
+					<br>
 					<td *ngIf="isLogged">
 						<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editPersonaModal"
 							(click)="onOpenModal('edit', persona)">
