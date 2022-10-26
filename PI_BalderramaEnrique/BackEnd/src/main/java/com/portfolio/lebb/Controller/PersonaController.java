@@ -35,7 +35,7 @@ public class PersonaController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/personas/borrar/{id}")
-    public String deletePersona(@PathVariable Long id){
+    public String deletePersona(@PathVariable int id){
     impPersonaService.deletePersona(id);
     return "La persona fue eliminada correctamente";
     }
@@ -51,6 +51,6 @@ public class PersonaController {
     
     @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
-    return impPersonaService.findPersona((long)1);
+    return impPersonaService.findPersona((int)1);
     }
 }
